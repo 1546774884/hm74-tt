@@ -18,7 +18,7 @@
           <span style="color:#ccc">隐私条款</span>
         </el-checkbox>
       </el-form>
-      <el-button type="primary" style="display:block;margin:0 auto;margin-top:30px" @click=login()>登录</el-button>
+      <el-button type="primary" style="display:block;margin:0 auto;margin-top:30px" @click='login'>登录</el-button>
     </el-card>
   </div>
 </template>
@@ -32,6 +32,7 @@ export default {
           this.$http
             .post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.LoginForm)
             .then((res) => {
+              window.sessionStorage.setItem('hm74-toutiao', JSON.stringify(res.data.data))
               this.$router.push('/')
             }).catch(() => {
               this.$message.error('手机或验证码错误！')

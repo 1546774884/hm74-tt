@@ -1,0 +1,123 @@
+<template>
+  <el-container class="home-container">
+    <el-aside :width="IsCollapse?'64px':'200px'" class="my-aside">
+      <div class="logo" :class="{guan:IsCollapse}"></div>
+      <el-menu
+      router
+      default-active="/"
+      active-text-color="#ffd04b"
+      background-color="#002033"
+      text-color="#fff"
+      :collapse="IsCollapse"
+      :collapse-transition="false"
+      style="border-right:none"
+      >
+        <el-menu-item index="/">
+          <i class="el-icon-menu"></i>
+          <span slot="title">首页</span>
+        </el-menu-item>
+        <el-menu-item index="/article">
+          <i class="el-icon-menu"></i>
+          <span slot="title">内容管理</span>
+        </el-menu-item>
+        <el-menu-item index="/image">
+          <i class="el-icon-menu"></i>
+          <span slot="title">素材管理</span>
+        </el-menu-item>
+        <el-menu-item index="/publish">
+          <i class="el-icon-menu"></i>
+          <span slot="title">发布文章</span>
+        </el-menu-item>
+        <el-menu-item index="/comment">
+          <i class="el-icon-menu"></i>
+          <span slot="title">评论管理</span>
+        </el-menu-item>
+        <el-menu-item index="/fans">
+          <i class="el-icon-menu"></i>
+          <span slot="title">粉丝管理</span>
+        </el-menu-item>
+        <el-menu-item index="/setting">
+          <i class="el-icon-menu"></i>
+          <span slot="title">个人设置</span>
+        </el-menu-item>
+      </el-menu>
+    </el-aside>
+    <el-container>
+      <el-header class="my-herder">
+        <span class="el-icon-s-fold" @click="toggleMenu()"></span>
+        <span>江苏传智播客教育有限公司</span>
+        <el-dropdown class="home-drp">
+          <span class="el-dropdown-link">
+            <img style="width:30px;vertical-align: middle" src="../../assets/images/avatar.jpg" alt />
+            <strong>黑马小哥</strong>
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>
+              <span class="el-icon-s-tools"></span>个人设置
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <span class="el-icon-s-unfold"></span>退出登录
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </el-header>
+      <el-main class="my-main">
+        <router-view></router-view>
+      </el-main>
+    </el-container>
+  </el-container>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      IsCollapse: false
+    }
+  },
+  methods: {
+    toggleMenu () {
+      this.IsCollapse = !this.IsCollapse
+    }
+  }
+}
+</script>
+
+<style lang='less'>
+.home-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  .my-aside {
+    background-color: #002033;
+    .logo {
+      width: 100%;
+      height: 60px;
+      background: #024 url(../../assets/images/logo_admin.png) no-repeat center /
+        140px auto;
+    }
+
+    .guan {
+        background: url(../../assets/images/logo_admin_01.png) no-repeat center;
+        background-size:36px auto
+    }
+  }
+  .my-herder {
+    border-bottom: 1px solid #ddd;
+    line-height: 60px;
+
+    .el-icon-s-fold {
+      font-size: 26px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .home-drp {
+      float: right;
+    }
+  }
+}
+</style>
