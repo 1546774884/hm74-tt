@@ -12,13 +12,13 @@
           <el-input v-model="LoginForm.code" placeholder="请输入验证码" style="width:240px"></el-input>
           <el-button type="primary" style="float:right">发送验证码</el-button>
         </el-form-item>
-        <el-checkbox v-model="checked">
+        <el-checkbox v-model="checked" >
           我已阅读并同意
           <span style="color:#ccc">用户协议</span>和
           <span style="color:#ccc">隐私条款</span>
         </el-checkbox>
       </el-form>
-      <el-button type="primary" style="display:block;margin:0 auto;margin-top:30px" @click='login'>登录</el-button>
+      <el-button type="primary" style="display:block;margin:0 auto;margin-top:30px" @click='login' :disabled='!checked'>登录</el-button>
     </el-card>
   </div>
 </template>
@@ -27,16 +27,30 @@
 export default {
   methods: {
     login () {
-      this.$refs.LoginForm.validate((val) => {
-        if (val) {
-          this.$http
-            .post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.LoginForm)
-            .then((res) => {
-              window.sessionStorage.setItem('hm74-toutiao', JSON.stringify(res.data.data))
-              this.$router.push('/')
-            }).catch(() => {
-              this.$message.error('手机或验证码错误！')
-            })
+      // this.$refs.LoginForm.validate((val) => {
+      //   if (val) {
+      //     this.$http
+      //       .post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.LoginForm)
+      //       .then((res) => {
+      //         window.sessionStorage.setItem('hm74-toutiao', JSON.stringify(res.data.data))
+      //         this.$router.push('/')
+      //       }).catch(() => {
+      //         this.$message.error('手机或验证码错误！')
+      //       })
+      //   }
+      // })
+
+      this.$refs.LoginForm.validate(async valid => {
+        if (valid) {
+          // 发请 promise对象 给你发请求
+          // try{ 业务逻辑 }catch(err){ 处理错误 }
+          try {
+            const res = await this.$http.post('authorizations', this.LoginForm)
+            window.sessionStorage.setItem('hm74-toutiao', JSON.stringify(res.data.data))
+            this.$router.push('/')
+          } catch (err) {
+            this.$message.error('手机号或验证码错误')
+          }
         }
       })
     }

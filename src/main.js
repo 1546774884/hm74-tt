@@ -9,8 +9,16 @@ import 'element-ui/lib/theme-chalk/index.css'
 // 导入VueRouter
 import router from './router/index'
 
+// 导入compontents的插件
+import component from '@/components'
+
 // 导入axios
 import axios from '@/api/axios'
+
+// 导入上传组件的样式
+import '@/styles/index.css'
+
+Vue.use(component)
 // // 基准路径
 // axios.defaults.baseURL = 'http://ttapi.research.itcast.cn/mp/v1_0/'
 // // token认证

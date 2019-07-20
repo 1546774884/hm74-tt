@@ -11,6 +11,9 @@ import login from '../views/login/login.vue'
 import home from '../views/home/home.vue'
 import Welcome from '../views/welcome/Welcome.vue'
 import NotFond from '../views/404/NotFond.vue'
+import Article from '../views/article/Article.vue'
+import Image from '../views/image/image.vue'
+import Publish from '../views/publish/publish.vue'
 
 // 注册到vue实例
 Vue.use(VueRouter)
@@ -23,10 +26,14 @@ const router = new VueRouter({
       path: '/',
       component: home,
       children: [
-        { name: 'welcome', path: '/', component: Welcome }
+        { name: 'welcome', path: '/', component: Welcome },
+        { name: 'article', path: '/article', component: Article },
+        { name: 'image', path: '/image', component: Image },
+        { name: 'publish', path: '/publish', component: Publish }
       ]
     },
     { name: '404', path: '*', component: NotFond }
+
   ]
 })
 
