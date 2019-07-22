@@ -70,6 +70,8 @@
 </template>
 
 <script>
+
+import eventbus from '@/eventbus/eventBus.js'
 export default {
   data () {
     return {
@@ -98,6 +100,14 @@ export default {
     const user = JSON.parse(window.sessionStorage.getItem('hm74-toutiao'))
     this.touxiang = user.photo
     this.name = user.name
+    // 绑定事件用来非父子的传值
+    eventbus.$on('updateHeaderName', (VAL) => {
+      this.name = VAL
+    })
+
+    eventbus.$on('updateHeaderPhoto', (VAL1) => {
+      this.touxiang = VAL1
+    })
   }
 }
 </script>

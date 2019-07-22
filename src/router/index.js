@@ -14,6 +14,9 @@ import NotFond from '../views/404/NotFond.vue'
 import Article from '../views/article/Article.vue'
 import Image from '../views/image/image.vue'
 import Publish from '../views/publish/publish.vue'
+import Comment from '../views/comment/comment.vue'
+import Setting from '../views/setting/setting.vue'
+import Fans from '../views/fans/fans.vue'
 
 // 注册到vue实例
 Vue.use(VueRouter)
@@ -29,7 +32,10 @@ const router = new VueRouter({
         { name: 'welcome', path: '/', component: Welcome },
         { name: 'article', path: '/article', component: Article },
         { name: 'image', path: '/image', component: Image },
-        { name: 'publish', path: '/publish', component: Publish }
+        { name: 'publish', path: '/publish', component: Publish },
+        { name: 'comment', path: '/comment', component: Comment },
+        { name: 'setting', path: '/setting', component: Setting },
+        { name: 'fans', path: '/fans', component: Fans }
       ]
     },
     { name: '404', path: '*', component: NotFond }
